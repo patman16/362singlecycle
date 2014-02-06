@@ -29,6 +29,16 @@ module testbench;
 		#2 write = 1; rd = 2; busW = 2;
 		//read integer register 2 on bus B, register 1 on bus A
 		#2 write = 0; rt = 2;
+		//write 5 to floating point register 20
+		#2 write = 1; fpoint = 1; rd = 20; busW = 20;
+		//read integer register 2 on bus A, register 5 on bus B
+		#2 write = 0; fpoint = 0; rs = 2; rt = 5;
+		//read floating point register 20 on both buses
+		#2 fpoint = 1; rs = 20; rt = 20;
+		//write 5 to integer register 5
+		#2 fpoint = 0; write = 1; regdst = 0; rt = 5; busW = 5;
+		//read integer register 5 on bus A, register 2 on bus B
+		#2 write = 0; rs = 5; rt = 2;
 		$finish;
         end
 endmodule

@@ -16,12 +16,12 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 	generate
 		for (i = 0; i < 32; i = i + 1) begin: intinitial
 		initial begin
-			intregs[i] = 0;
+			intregs[i] <= 0;
 		end
 		end
 		for (i = 0; i < 32; i = i + 1) begin: fpinitial
 		initial begin
-			fpregs[i] = 0;
+			fpregs[i] <= 0;
 		end
 		end	
 	endgenerate
@@ -33,18 +33,18 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 		rb = rt;
 		if (write)
 			if (fpoint)
-				fpregs[rw] = busW;
+				fpregs[rw] <= busW;
 			else
-				intregs[rw] = busW;
+				intregs[rw] <= busW;
 		if (fpoint)
 			begin
-				A = fpregs[ra];
-				B = fpregs[rb];
+				A <= fpregs[ra];
+				B <= fpregs[rb];
 			end
 		else
 			begin
-				A = intregs[ra];
-				B = intregs[rb];
+				A <= intregs[ra];
+				B <= intregs[rb];
 			end
 	end	
 endmodule
