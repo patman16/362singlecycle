@@ -1,0 +1,201 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x25159b0 .scope module, "dtest" "dtest" 2 1;
+ .timescale 0 0;
+v0x252cd80_0 .var "clk", 0 0;
+v0x252ce00_0 .var "daddr", 0 31;
+v0x252ceb0_0 .net "drdata", 0 31, L_0x252df70; 1 drivers
+v0x252cf60_0 .var "dsize", 0 1;
+v0x252d010_0 .var "dwdata", 0 31;
+v0x252d0c0_0 .var "dwrite", 0 0;
+S_0x2515aa0 .scope module, "DMEM" "dmem" 2 9, 3 1, S_0x25159b0;
+ .timescale 0 0;
+P_0x2515b98 .param/str "DMEMFILE" 3 12, "data.hex";
+P_0x2515bc0 .param/l "SIZE" 3 2, +C4<0100000000000000>;
+v0x2510780_0 .net *"_s0", 7 0, L_0x252d140; 1 drivers
+v0x252bc20_0 .net *"_s10", 31 0, L_0x252d500; 1 drivers
+v0x252bcc0_0 .net *"_s12", 7 0, L_0x252d6a0; 1 drivers
+v0x252bd60_0 .net *"_s14", 2 0, C4<010>; 1 drivers
+v0x252be10_0 .net *"_s18", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x252beb0_0 .net *"_s19", 31 0, L_0x252d780; 1 drivers
+v0x252bf90_0 .net *"_s2", 7 0, L_0x252d1e0; 1 drivers
+v0x252c030_0 .net *"_s20", 31 0, L_0x252d940; 1 drivers
+v0x252c120_0 .net *"_s22", 7 0, L_0x252db50; 1 drivers
+v0x252c1c0_0 .net *"_s24", 2 0, C4<011>; 1 drivers
+v0x252c2c0_0 .net *"_s28", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x252c360_0 .net *"_s29", 31 0, L_0x252dc40; 1 drivers
+v0x252c470_0 .net *"_s30", 31 0, L_0x252de00; 1 drivers
+v0x252c510_0 .net *"_s4", 1 0, C4<01>; 1 drivers
+v0x252c630_0 .net *"_s8", 29 0, C4<000000000000000000000000000000>; 1 drivers
+v0x252c6d0_0 .net *"_s9", 31 0, L_0x252d320; 1 drivers
+v0x252c590_0 .net "addr", 0 31, v0x252ce00_0; 1 drivers
+v0x252c820_0 .net "clk", 0 0, v0x252cd80_0; 1 drivers
+v0x252c940_0 .net "dsize", 0 1, v0x252cf60_0; 1 drivers
+v0x252c9c0_0 .var "filename", 639 0;
+v0x252c8a0_0 .var/i "i", 31 0;
+v0x252caf0 .array "mem", 16383 0, 0 7;
+v0x252ca40_0 .alias "rData", 0 31, v0x252ceb0_0;
+v0x252cc30_0 .net "wData", 0 31, v0x252d010_0; 1 drivers
+v0x252cb70_0 .net "writeEnable", 0 0, v0x252d0c0_0; 1 drivers
+E_0x2500820 .event posedge, v0x252c820_0;
+L_0x252d140 .array/port v0x252caf0, v0x252ce00_0;
+L_0x252d1e0 .array/port v0x252caf0, L_0x252d500;
+L_0x252d320 .concat [ 2 30 0 0], C4<01>, C4<000000000000000000000000000000>;
+L_0x252d500 .arith/sum 32, v0x252ce00_0, L_0x252d320;
+L_0x252d6a0 .array/port v0x252caf0, L_0x252d940;
+L_0x252d780 .concat [ 3 29 0 0], C4<010>, C4<00000000000000000000000000000>;
+L_0x252d940 .arith/sum 32, v0x252ce00_0, L_0x252d780;
+L_0x252db50 .array/port v0x252caf0, L_0x252de00;
+L_0x252dc40 .concat [ 3 29 0 0], C4<011>, C4<00000000000000000000000000000>;
+L_0x252de00 .arith/sum 32, v0x252ce00_0, L_0x252dc40;
+L_0x252df70 .concat [ 8 8 8 8], L_0x252db50, L_0x252d6a0, L_0x252d1e0, L_0x252d140;
+    .scope S_0x2515aa0;
+T_0 ;
+    %wait E_0x2500820;
+    %load/v 8, v0x252cb70_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %vpi_call 3 19 "$display", "writing to mem at %x val %x size %2d", v0x252c590_0, v0x252cc30_0, v0x252c940_0;
+    %load/v 8, v0x252c940_0, 2;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_0.3, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_0.4, 6;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_0.5, 6;
+    %vpi_call 3 37 "$display", "Invalid dsize: %x", v0x252c940_0;
+    %jmp T_0.7;
+T_0.2 ;
+    %load/v 8, v0x252cc30_0, 32;
+    %ix/load 0, 3, 0;
+    %load/vp0 40, v0x252c590_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 8;
+t_0 ;
+    %ix/load 0, 2, 0;
+    %load/vp0 40, v0x252c590_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_1, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 16;
+t_1 ;
+    %ix/load 0, 1, 0;
+    %load/vp0 40, v0x252c590_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_2, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 24;
+t_2 ;
+    %ix/getv 3, v0x252c590_0;
+    %jmp/1 t_3, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 32;
+t_3 ;
+    %jmp T_0.7;
+T_0.3 ;
+    %vpi_call 3 27 "$display", "Invalid dsize: %x", v0x252c940_0;
+    %jmp T_0.7;
+T_0.4 ;
+    %load/v 8, v0x252cc30_0, 16; Only need 16 of 32 bits
+; Save base=8 wid=16 in lookaside.
+    %ix/load 0, 1, 0;
+    %load/vp0 24, v0x252c590_0, 32;
+    %ix/get 3, 24, 32;
+    %jmp/1 t_4, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 8;
+t_4 ;
+    %ix/getv 3, v0x252c590_0;
+    %jmp/1 t_5, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 16;
+t_5 ;
+    %jmp T_0.7;
+T_0.5 ;
+    %load/v 8, v0x252cc30_0, 8; Only need 8 of 32 bits
+; Save base=8 wid=8 in lookaside.
+    %ix/getv 3, v0x252c590_0;
+    %jmp/1 t_6, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x252caf0, 0, 8;
+t_6 ;
+    %jmp T_0.7;
+T_0.7 ;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x2515aa0;
+T_1 ;
+    %set/v v0x252c8a0_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x252c8a0_0, 32;
+   %cmpi/s 8, 16384, 32;
+    %jmp/0xz T_1.1, 5;
+    %ix/getv/s 3, v0x252c8a0_0;
+   %jmp/1 t_7, 4;
+   %ix/load 1, 0, 0;
+   %set/av v0x252caf0, 0, 8;
+t_7 ;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x252c8a0_0, 32;
+    %set/v v0x252c8a0_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_func 3 51 "$value$plusargs", 8, 32, "datafile=%s", v0x252c9c0_0;
+    %nor/r 8, 8, 32;
+    %jmp/0xz  T_1.2, 8;
+    %movi 8, 778593656, 32;
+    %movi 40, 1684108385, 32;
+    %movi 72, 0, 32;
+    %movi 104, 0, 32;
+    %movi 136, 0, 32;
+    %movi 168, 0, 32;
+    %movi 200, 0, 32;
+    %movi 232, 0, 32;
+    %movi 264, 0, 32;
+    %movi 296, 0, 32;
+    %movi 328, 0, 32;
+    %movi 360, 0, 32;
+    %movi 392, 0, 32;
+    %movi 424, 0, 32;
+    %movi 456, 0, 32;
+    %movi 488, 0, 32;
+    %movi 520, 0, 32;
+    %movi 552, 0, 32;
+    %movi 584, 0, 32;
+    %movi 616, 0, 32;
+    %set/v v0x252c9c0_0, 8, 640;
+T_1.2 ;
+    %vpi_call 3 54 "$readmemh", v0x252c9c0_0, v0x252caf0;
+    %end;
+    .thread T_1;
+    .scope S_0x25159b0;
+T_2 ;
+    %vpi_call 2 14 "$monitor", "addr= %x data = %x", v0x252ce00_0, v0x252ceb0_0;
+    %movi 8, 8192, 32;
+    %set/v v0x252ce00_0, 8, 32;
+    %delay 1, 0;
+    %movi 8, 8193, 32;
+    %set/v v0x252ce00_0, 8, 32;
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tests/dmem_test.v";
+    "data_mem.v";

@@ -1,0 +1,101 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1d267c0 .scope module, "itest" "itest" 2 1;
+ .timescale 0 0;
+v0x1d3bd00_0 .var "iaddr", 0 31;
+v0x1d3bd80_0 .net "instr", 0 31, L_0x1d3d0b0; 1 drivers
+S_0x1d268b0 .scope module, "IMEM" "imem" 2 5, 3 1, S_0x1d267c0;
+ .timescale 0 0;
+P_0x1d24628 .param/str "IMEMFILE" 3 4, "instr.hex";
+P_0x1d24650 .param/l "OFFSET" 3 3, +C4<0>;
+P_0x1d24678 .param/l "SIZE" 3 2, +C4<010000000000>;
+v0x1d269a0_0 .net *"_s0", 32 0, L_0x1d3be30; 1 drivers
+v0x1d3aba0_0 .net *"_s10", 7 0, L_0x1d3c250; 1 drivers
+v0x1d3ac40_0 .net *"_s12", 7 0, L_0x1d3c340; 1 drivers
+v0x1d3ace0_0 .net *"_s14", 1 0, C4<01>; 1 drivers
+v0x1d3ad90_0 .net *"_s18", 29 0, C4<000000000000000000000000000000>; 1 drivers
+v0x1d3ae30_0 .net *"_s19", 31 0, L_0x1d3c420; 1 drivers
+v0x1d3af10_0 .net *"_s20", 31 0, L_0x1d3c610; 1 drivers
+v0x1d3afb0_0 .net *"_s22", 7 0, L_0x1d3c7e0; 1 drivers
+v0x1d3b0a0_0 .net *"_s24", 2 0, C4<010>; 1 drivers
+v0x1d3b140_0 .net *"_s28", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x1d3b240_0 .net *"_s29", 31 0, L_0x1d3c8d0; 1 drivers
+v0x1d3b2e0_0 .net *"_s3", 0 0, C4<0>; 1 drivers
+v0x1d3b3f0_0 .net *"_s30", 31 0, L_0x1d3ca90; 1 drivers
+v0x1d3b490_0 .net *"_s32", 7 0, L_0x1d3cc40; 1 drivers
+v0x1d3b5b0_0 .net *"_s34", 2 0, C4<011>; 1 drivers
+v0x1d3b650_0 .net *"_s38", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x1d3b510_0 .net *"_s39", 31 0, L_0x1d3cd20; 1 drivers
+v0x1d3b7a0_0 .net *"_s4", 32 0, C4<000000000000000000000000000000000>; 1 drivers
+v0x1d3b8c0_0 .net *"_s40", 31 0, L_0x1d3cea0; 1 drivers
+v0x1d3b940_0 .net *"_s6", 32 0, L_0x1d3bf90; 1 drivers
+v0x1d3b820_0 .net "addr", 0 31, v0x1d3bd00_0; 1 drivers
+v0x1d3ba70_0 .var "filename", 639 0;
+v0x1d3b9c0_0 .alias "instr", 0 31, v0x1d3bd80_0;
+v0x1d3bbb0 .array "mem", 1023 0, 0 7;
+v0x1d3baf0_0 .net "phys_addr", 0 31, L_0x1d3c160; 1 drivers
+L_0x1d3be30 .concat [ 32 1 0 0], v0x1d3bd00_0, C4<0>;
+L_0x1d3bf90 .arith/sub 33, L_0x1d3be30, C4<000000000000000000000000000000000>;
+L_0x1d3c160 .part L_0x1d3bf90, 0, 32;
+L_0x1d3c250 .array/port v0x1d3bbb0, L_0x1d3c160;
+L_0x1d3c340 .array/port v0x1d3bbb0, L_0x1d3c610;
+L_0x1d3c420 .concat [ 2 30 0 0], C4<01>, C4<000000000000000000000000000000>;
+L_0x1d3c610 .arith/sum 32, L_0x1d3c160, L_0x1d3c420;
+L_0x1d3c7e0 .array/port v0x1d3bbb0, L_0x1d3ca90;
+L_0x1d3c8d0 .concat [ 3 29 0 0], C4<010>, C4<00000000000000000000000000000>;
+L_0x1d3ca90 .arith/sum 32, L_0x1d3c160, L_0x1d3c8d0;
+L_0x1d3cc40 .array/port v0x1d3bbb0, L_0x1d3cea0;
+L_0x1d3cd20 .concat [ 3 29 0 0], C4<011>, C4<00000000000000000000000000000>;
+L_0x1d3cea0 .arith/sum 32, L_0x1d3c160, L_0x1d3cd20;
+L_0x1d3d0b0 .concat [ 8 8 8 8], L_0x1d3cc40, L_0x1d3c7e0, L_0x1d3c340, L_0x1d3c250;
+    .scope S_0x1d268b0;
+T_0 ;
+    %vpi_func 3 20 "$value$plusargs", 8, 32, "instrfile=%s", v0x1d3ba70_0;
+    %nor/r 8, 8, 32;
+    %jmp/0xz  T_0.0, 8;
+    %movi 8, 778593656, 32;
+    %movi 40, 1853060210, 32;
+    %movi 72, 105, 32;
+    %movi 104, 0, 32;
+    %movi 136, 0, 32;
+    %movi 168, 0, 32;
+    %movi 200, 0, 32;
+    %movi 232, 0, 32;
+    %movi 264, 0, 32;
+    %movi 296, 0, 32;
+    %movi 328, 0, 32;
+    %movi 360, 0, 32;
+    %movi 392, 0, 32;
+    %movi 424, 0, 32;
+    %movi 456, 0, 32;
+    %movi 488, 0, 32;
+    %movi 520, 0, 32;
+    %movi 552, 0, 32;
+    %movi 584, 0, 32;
+    %movi 616, 0, 32;
+    %set/v v0x1d3ba70_0, 8, 640;
+T_0.0 ;
+    %vpi_call 3 23 "$readmemh", v0x1d3ba70_0, v0x1d3bbb0;
+    %end;
+    .thread T_0;
+    .scope S_0x1d267c0;
+T_1 ;
+    %set/v v0x1d3bd00_0, 0, 32;
+    %delay 1, 0;
+    %vpi_call 2 14 "$display", "Instr [%x] = %x", v0x1d3bd00_0, v0x1d3bd80_0;
+    %movi 8, 4, 32;
+    %set/v v0x1d3bd00_0, 8, 32;
+    %delay 1, 0;
+    %vpi_call 2 17 "$display", "Instr [%x] = %x", v0x1d3bd00_0, v0x1d3bd80_0;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tests/imem_test.v";
+    "instr_mem.v";
