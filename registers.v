@@ -37,7 +37,7 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 			0 : intregs[rw] <= busW;
 			1 : fpregs[rw] <= intregs[ra];
 			2 : intregs[rw] <= fpregs[ra];
-			default : intregs[rw] <= busW;
+			3 : fpregs[rw] <= busW;
 			endcase
 		if (fpoint == 2'b1)
 		begin
