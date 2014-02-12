@@ -1,5 +1,6 @@
 module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
-	input clk, write, regdst, fpoint;
+	input clk, write, regdst;
+	input [1:0] fpoint;
 	input [4:0] rd, rs, rt;
 	input [31:0] busW;
 	output [31:0] busA, busB;
@@ -32,19 +33,19 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 		ra = rs;
 		rb = rt;
 		if (write)
-			if (fpoint)
-				fpregs[rw] <= busW;
-			else
-				intregs[rw] <= busW;
-		if (fpoint)
-			begin
-				A <= fpregs[ra];
-				B <= fpregs[rb];
-			end
+			case (fpoint)
+			0 : intregs[rw] <= busW;
+			1 : fpregs[rw] <= intregs[ra];
+			2 : intregs[rw] <= fpregs[ra];
+			default : intregs[rw] <= busW;
+			endcase
+		if (fpoint == 2'b1)
+		begin
+		A <= fpregs[ra]; B <= fpregs[rb];
+		end
 		else
-			begin
-				A <= intregs[ra];
-				B <= intregs[rb];
-			end
+		begin
+		A <= intregs[ra]; B <= intregs[rb];
+		end
 	end	
 endmodule
