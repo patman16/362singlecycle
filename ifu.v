@@ -28,9 +28,9 @@ endmodule
 
 module PCReg(out, in, clk, rst); 
    parameter width = 32, init = 0;
-   output [0:width-1] out;
-   reg [0:width-1]    out;
-   input [0:width-1]  in;
+   output [width-1:0] out;
+   reg [width-1:0]    out;
+   input [width-1:0]  in;
    input 	      clk, rst;
 
    always @ (posedge clk or negedge rst)
@@ -70,6 +70,7 @@ module ifu(branch, zero, jump, clock, start, instruction);
     
     assign address[31:2] = pcout;
     assign address[1:0] = 2'b00;
+   // assign address[31:0] = 32'h00;
     assign jumpmux[29:26] = pcout[29:26];
     assign jumpmux[25:0] = test[25:0];
     
@@ -77,7 +78,7 @@ module ifu(branch, zero, jump, clock, start, instruction);
 
 
     initial begin
-	one = 32'b000000000000000000000000000001;
+	one = 30'b000000000000000000000000000001;
     end
 
 endmodule
