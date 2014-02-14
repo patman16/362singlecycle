@@ -1,0 +1,276 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x14bfc00 .scope module, "mem_testbench" "mem_testbench" 2 2;
+ .timescale 0 0;
+P_0x14e0568 .param/str "DMEMFILE" 2 4, "data.hex";
+P_0x14e0590 .param/str "IMEMFILE" 2 3, "instr.hex";
+v0x15076f0_0 .var "clk", 0 0;
+v0x1507900_0 .var "daddr", 0 31;
+v0x1507980_0 .net "drdata", 0 31, L_0x150a040; 1 drivers
+v0x1507a30_0 .var "dsize", 0 1;
+v0x1507ae0_0 .var "dwdata", 0 31;
+v0x1507b90_0 .var "dwrite", 0 0;
+v0x1507c40_0 .var "filename", 639 0;
+v0x1507cc0_0 .var/i "i", 31 0;
+v0x1507d40_0 .var "iaddr", 0 31;
+v0x1507dc0_0 .net "instr", 0 31, L_0x15090e0; 1 drivers
+S_0x1506660 .scope module, "IMEM" "imem" 2 14, 3 1, S_0x14bfc00;
+ .timescale 0 0;
+P_0x1505c78 .param/l "OFFSET" 3 3, +C4<0>;
+P_0x1505ca0 .param/l "SIZE" 3 2, +C4<010000000000>;
+v0x1506810_0 .net *"_s0", 32 0, L_0x1507e70; 1 drivers
+v0x15068d0_0 .net *"_s10", 7 0, L_0x1508250; 1 drivers
+v0x1506970_0 .net *"_s12", 7 0, L_0x1508340; 1 drivers
+v0x1506a10_0 .net *"_s14", 1 0, C4<01>; 1 drivers
+v0x1506a90_0 .net *"_s18", 29 0, C4<000000000000000000000000000000>; 1 drivers
+v0x1506b30_0 .net *"_s19", 31 0, L_0x1508420; 1 drivers
+v0x1506bd0_0 .net *"_s20", 31 0, L_0x15085e0; 1 drivers
+v0x1506c70_0 .net *"_s22", 7 0, L_0x15087b0; 1 drivers
+v0x1506d10_0 .net *"_s24", 2 0, C4<010>; 1 drivers
+v0x1506db0_0 .net *"_s28", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x1506eb0_0 .net *"_s29", 31 0, L_0x15088a0; 1 drivers
+v0x1506f50_0 .net *"_s3", 0 0, C4<0>; 1 drivers
+v0x1506ff0_0 .net *"_s30", 31 0, L_0x1508a60; 1 drivers
+v0x1507090_0 .net *"_s32", 7 0, L_0x1508c70; 1 drivers
+v0x15071b0_0 .net *"_s34", 2 0, C4<011>; 1 drivers
+v0x1507250_0 .net *"_s38", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x1507110_0 .net *"_s39", 31 0, L_0x1508d50; 1 drivers
+v0x15073a0_0 .net *"_s4", 32 0, C4<000000000000000000000000000000000>; 1 drivers
+v0x15074c0_0 .net *"_s40", 31 0, L_0x1508ed0; 1 drivers
+v0x1507540_0 .net *"_s6", 32 0, L_0x1507f90; 1 drivers
+v0x1507420_0 .net "addr", 0 31, v0x1507d40_0; 1 drivers
+v0x1507670_0 .alias "instr", 0 31, v0x1507dc0_0;
+v0x15075c0 .array "mem", 1023 0, 0 7;
+v0x15077b0_0 .net "phys_addr", 0 31, L_0x1508160; 1 drivers
+L_0x1507e70 .concat [ 32 1 0 0], v0x1507d40_0, C4<0>;
+L_0x1507f90 .arith/sub 33, L_0x1507e70, C4<000000000000000000000000000000000>;
+L_0x1508160 .part L_0x1507f90, 0, 32;
+L_0x1508250 .array/port v0x15075c0, L_0x1508160;
+L_0x1508340 .array/port v0x15075c0, L_0x15085e0;
+L_0x1508420 .concat [ 2 30 0 0], C4<01>, C4<000000000000000000000000000000>;
+L_0x15085e0 .arith/sum 32, L_0x1508160, L_0x1508420;
+L_0x15087b0 .array/port v0x15075c0, L_0x1508a60;
+L_0x15088a0 .concat [ 3 29 0 0], C4<010>, C4<00000000000000000000000000000>;
+L_0x1508a60 .arith/sum 32, L_0x1508160, L_0x15088a0;
+L_0x1508c70 .array/port v0x15075c0, L_0x1508ed0;
+L_0x1508d50 .concat [ 3 29 0 0], C4<011>, C4<00000000000000000000000000000>;
+L_0x1508ed0 .arith/sum 32, L_0x1508160, L_0x1508d50;
+L_0x15090e0 .concat [ 8 8 8 8], L_0x1508c70, L_0x15087b0, L_0x1508340, L_0x1508250;
+S_0x14d2ac0 .scope module, "DMEM" "dmem" 2 15, 4 1, S_0x14bfc00;
+ .timescale 0 0;
+P_0x14e6868 .param/l "SIZE" 4 2, +C4<0100000000000000>;
+v0x14e60b0_0 .net *"_s0", 7 0, L_0x1509390; 1 drivers
+v0x1505650_0 .net *"_s10", 31 0, L_0x15096a0; 1 drivers
+v0x15056f0_0 .net *"_s12", 7 0, L_0x1509790; 1 drivers
+v0x1505790_0 .net *"_s14", 2 0, C4<010>; 1 drivers
+v0x1505840_0 .net *"_s18", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x15058e0_0 .net *"_s19", 31 0, L_0x1509870; 1 drivers
+v0x15059c0_0 .net *"_s2", 7 0, L_0x1509480; 1 drivers
+v0x1505a60_0 .net *"_s20", 31 0, L_0x1509a30; 1 drivers
+v0x1505b50_0 .net *"_s22", 7 0, L_0x1509bb0; 1 drivers
+v0x1505bf0_0 .net *"_s24", 2 0, C4<011>; 1 drivers
+v0x1505cf0_0 .net *"_s28", 28 0, C4<00000000000000000000000000000>; 1 drivers
+v0x1505d90_0 .net *"_s29", 31 0, L_0x1509ca0; 1 drivers
+v0x1505ea0_0 .net *"_s30", 31 0, L_0x1509ea0; 1 drivers
+v0x1505f40_0 .net *"_s4", 1 0, C4<01>; 1 drivers
+v0x1506060_0 .net *"_s8", 29 0, C4<000000000000000000000000000000>; 1 drivers
+v0x1506100_0 .net *"_s9", 31 0, L_0x1509520; 1 drivers
+v0x1505fc0_0 .net "addr", 0 31, v0x1507900_0; 1 drivers
+v0x1506250_0 .net "clk", 0 0, v0x15076f0_0; 1 drivers
+v0x1506370_0 .net "dsize", 0 1, v0x1507a30_0; 1 drivers
+v0x15063f0 .array "mem", 16383 0, 0 7;
+v0x15062d0_0 .alias "rData", 0 31, v0x1507980_0;
+v0x1506520_0 .net "wData", 0 31, v0x1507ae0_0; 1 drivers
+v0x1506470_0 .net "writeEnable", 0 0, v0x1507b90_0; 1 drivers
+E_0x14bfa30 .event posedge, v0x1506250_0;
+L_0x1509390 .array/port v0x15063f0, v0x1507900_0;
+L_0x1509480 .array/port v0x15063f0, L_0x15096a0;
+L_0x1509520 .concat [ 2 30 0 0], C4<01>, C4<000000000000000000000000000000>;
+L_0x15096a0 .arith/sum 32, v0x1507900_0, L_0x1509520;
+L_0x1509790 .array/port v0x15063f0, L_0x1509a30;
+L_0x1509870 .concat [ 3 29 0 0], C4<010>, C4<00000000000000000000000000000>;
+L_0x1509a30 .arith/sum 32, v0x1507900_0, L_0x1509870;
+L_0x1509bb0 .array/port v0x15063f0, L_0x1509ea0;
+L_0x1509ca0 .concat [ 3 29 0 0], C4<011>, C4<00000000000000000000000000000>;
+L_0x1509ea0 .arith/sum 32, v0x1507900_0, L_0x1509ca0;
+L_0x150a040 .concat [ 8 8 8 8], L_0x1509bb0, L_0x1509790, L_0x1509480, L_0x1509390;
+    .scope S_0x14d2ac0;
+T_0 ;
+    %wait E_0x14bfa30;
+    %load/v 8, v0x1506470_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %vpi_call 4 13 "$display", "writing to mem at %x val %x size %2d", v0x1505fc0_0, v0x1506520_0, v0x1506370_0;
+    %load/v 8, v0x1506370_0, 2;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_0.3, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_0.4, 6;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_0.5, 6;
+    %vpi_call 4 31 "$display", "Invalid dsize: %x", v0x1506370_0;
+    %jmp T_0.7;
+T_0.2 ;
+    %load/v 8, v0x1506520_0, 32;
+    %ix/load 0, 3, 0;
+    %load/vp0 40, v0x1505fc0_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 8;
+t_0 ;
+    %ix/load 0, 2, 0;
+    %load/vp0 40, v0x1505fc0_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_1, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 16;
+t_1 ;
+    %ix/load 0, 1, 0;
+    %load/vp0 40, v0x1505fc0_0, 32;
+    %ix/get 3, 40, 32;
+    %jmp/1 t_2, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 24;
+t_2 ;
+    %ix/getv 3, v0x1505fc0_0;
+    %jmp/1 t_3, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 32;
+t_3 ;
+    %jmp T_0.7;
+T_0.3 ;
+    %vpi_call 4 21 "$display", "Invalid dsize: %x", v0x1506370_0;
+    %jmp T_0.7;
+T_0.4 ;
+    %load/v 8, v0x1506520_0, 16; Only need 16 of 32 bits
+; Save base=8 wid=16 in lookaside.
+    %ix/load 0, 1, 0;
+    %load/vp0 24, v0x1505fc0_0, 32;
+    %ix/get 3, 24, 32;
+    %jmp/1 t_4, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 8;
+t_4 ;
+    %ix/getv 3, v0x1505fc0_0;
+    %jmp/1 t_5, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 16;
+t_5 ;
+    %jmp T_0.7;
+T_0.5 ;
+    %load/v 8, v0x1506520_0, 8; Only need 8 of 32 bits
+; Save base=8 wid=8 in lookaside.
+    %ix/getv 3, v0x1505fc0_0;
+    %jmp/1 t_6, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x15063f0, 0, 8;
+t_6 ;
+    %jmp T_0.7;
+T_0.7 ;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x14bfc00;
+T_1 ;
+    %set/v v0x1507cc0_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x1507cc0_0, 32;
+   %cmpi/s 8, 16384, 32;
+    %jmp/0xz T_1.1, 5;
+    %ix/getv/s 3, v0x1507cc0_0;
+   %jmp/1 t_7, 4;
+   %ix/load 1, 0, 0;
+   %set/av v0x15063f0, 0, 8;
+t_7 ;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x1507cc0_0, 32;
+    %set/v v0x1507cc0_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_func 2 23 "$value$plusargs", 8, 32, "instrfile=%s", v0x1507c40_0;
+    %nor/r 8, 8, 32;
+    %jmp/0xz  T_1.2, 8;
+    %movi 8, 778593656, 32;
+    %movi 40, 1853060210, 32;
+    %movi 72, 105, 32;
+    %movi 104, 0, 32;
+    %movi 136, 0, 32;
+    %movi 168, 0, 32;
+    %movi 200, 0, 32;
+    %movi 232, 0, 32;
+    %movi 264, 0, 32;
+    %movi 296, 0, 32;
+    %movi 328, 0, 32;
+    %movi 360, 0, 32;
+    %movi 392, 0, 32;
+    %movi 424, 0, 32;
+    %movi 456, 0, 32;
+    %movi 488, 0, 32;
+    %movi 520, 0, 32;
+    %movi 552, 0, 32;
+    %movi 584, 0, 32;
+    %movi 616, 0, 32;
+    %set/v v0x1507c40_0, 8, 640;
+T_1.2 ;
+    %vpi_call 2 26 "$readmemh", v0x1507c40_0, v0x15075c0;
+    %vpi_func 2 28 "$value$plusargs", 8, 32, "datafile=%s", v0x1507c40_0;
+    %nor/r 8, 8, 32;
+    %jmp/0xz  T_1.4, 8;
+    %movi 8, 778593656, 32;
+    %movi 40, 1684108385, 32;
+    %movi 72, 0, 32;
+    %movi 104, 0, 32;
+    %movi 136, 0, 32;
+    %movi 168, 0, 32;
+    %movi 200, 0, 32;
+    %movi 232, 0, 32;
+    %movi 264, 0, 32;
+    %movi 296, 0, 32;
+    %movi 328, 0, 32;
+    %movi 360, 0, 32;
+    %movi 392, 0, 32;
+    %movi 424, 0, 32;
+    %movi 456, 0, 32;
+    %movi 488, 0, 32;
+    %movi 520, 0, 32;
+    %movi 552, 0, 32;
+    %movi 584, 0, 32;
+    %movi 616, 0, 32;
+    %set/v v0x1507c40_0, 8, 640;
+T_1.4 ;
+    %vpi_call 2 31 "$readmemh", v0x1507c40_0, v0x15063f0;
+    %set/v v0x1507d40_0, 0, 32;
+    %delay 1, 0;
+    %vpi_call 2 42 "$display", "Instr [%x] = %x", v0x1507d40_0, v0x1507dc0_0;
+    %movi 8, 4, 32;
+    %set/v v0x1507d40_0, 8, 32;
+    %delay 1, 0;
+    %vpi_call 2 45 "$display", "Instr [%x] = %x", v0x1507d40_0, v0x1507dc0_0;
+    %vpi_call 2 48 "$monitor", "addr= %x data = %x", v0x1507900_0, v0x1507980_0;
+    %movi 8, 8192, 32;
+    %set/v v0x1507900_0, 8, 32;
+    %delay 1, 0;
+    %movi 8, 8193, 32;
+    %set/v v0x1507900_0, 8, 32;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "tests/mem_test.v";
+    "instr_mem.v";
+    "data_mem.v";

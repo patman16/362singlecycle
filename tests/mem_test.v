@@ -1,6 +1,5 @@
-
 // Test module. Loads data files
-module memload_example();
+module mem_testbench();
     parameter IMEMFILE = "instr.hex";
     parameter DMEMFILE = "data.hex";
     reg [8*80-1:0] filename;
@@ -52,4 +51,3 @@ module memload_example();
         daddr = 32'h2001;
     end // initial
 endmodule
-

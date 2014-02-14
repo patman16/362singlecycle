@@ -1,11 +1,17 @@
 module dmem(addr, rData, wData, writeEnable, dsize, clk);
     parameter SIZE=32768;
+    
 
     input [0:31] addr, wData;
-    input 	writeEnable, clk;
+    input writeEnable, clk;
     input [0:1] dsize; // equivalent to bytes-1 ( 3=Word, 1=Halfword, 0=Byte)
     output [0:31] rData;
     reg [0:7] 	 mem[0:(SIZE-1)];
+    
+
+    parameter DMEMFILE = "data.hex";
+    reg [8*80-1:0] filename;
+    integer i;
 
     // Write
     always @ (posedge clk) begin
@@ -34,4 +40,19 @@ module dmem(addr, rData, wData, writeEnable, dsize, clk);
     end
     // Read
     assign rData = {mem[addr], mem[addr+1], mem[addr+2], mem[addr+3]};
+
+    //Load data memmory file
+    initial begin
+        // Clear DMEM
+        for (i = 0; i < DMEM.SIZE; i = i+1)
+            DMEM.mem[i] = 8'h0;
+
+        // Load DMEM from file
+        if (!$value$plusargs("datafile=%s", filename)) begin
+            filename = DMEMFILE;
+        end
+        $readmemh(filename, DMEM.mem);
+
+     end //initial
+    
 endmodule // dmem
