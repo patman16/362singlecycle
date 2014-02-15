@@ -55,18 +55,20 @@ module ifu(branch, zero, jump, clock, start, instruction);
     input branch, zero, jump, clock, start;	
     output [31:0] address, test, instruction;
     reg [29:0] one;
-    wire mux0control, open1, open2;
+    wire mux0control, open1, open2, zero_ctrl;
     wire [29:0] adder0, adder1, mux0, mux1, jumpmux, pcout, extend; 
    
     adder_IFU #(.N(30)) adder0_map (pcout, one, 1'b0, adder0, open1);
     adder_IFU #(.N(30)) adder1_map (adder0, extend, 1'b0, adder1, open2);
-    and (mux0control, branch, zero); 
+    and (mux0control, branch, zero_ctrl); 
     mux_2to1_n #(.n(30)) mux0_map (adder0, adder1, mux0control, mux0);
     mux_2to1_n #(.n(30)) mux1_map (mux0, jumpmux, jump, mux1);
     PCReg #(.width(30)) PC (pcout, mux1, clock, start);
     imem #(.SIZE(1024)) IMEM (address, test);
     extender #(.inN(16), .outN(30) ) EXT (test[15:0], 1'b1, extend);
     
+    mux_2to1_n #(.n(1)) branch_ctrl (zero,~zero, instruction[26], zero_ctrl);
+
     assign address[31:2] = pcout;
     assign address[1:0] = 2'b00;
     assign jumpmux[29:26] = pcout[29:26];
