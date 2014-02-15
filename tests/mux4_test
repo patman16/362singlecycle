@@ -1,0 +1,130 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0xee6990 .scope module, "mux4to1test" "mux4to1test" 2 1;
+ .timescale 0 0;
+P_0xec13c8 .param/l "N" 2 2, +C4<0100000>;
+v0xefc6a0_0 .var "A", 31 0;
+v0xefc740_0 .var "B", 31 0;
+v0xefc7f0_0 .var "C", 31 0;
+v0xefc8a0_0 .var "D", 31 0;
+v0xefc980_0 .net "OUT", 31 0, v0xefc600_0; 1 drivers
+v0xefca30_0 .var "SEL", 1 0;
+S_0xee6a80 .scope module, "TEST" "mux_4to1_n" 2 7, 3 1, S_0xee6990;
+ .timescale 0 0;
+P_0xee4dc8 .param/l "n" 3 2, +C4<0100000>;
+v0xee6b70_0 .net *"_s11", 0 0, L_0xefcc80; 1 drivers
+v0xefc100_0 .net *"_s8", 0 0, L_0xefcb60; 1 drivers
+v0xefc1a0_0 .net "sel", 1 0, v0xefca30_0; 1 drivers
+v0xefc240_0 .net "src0", 31 0, v0xefc6a0_0; 1 drivers
+v0xefc2f0_0 .net "src1", 31 0, v0xefc740_0; 1 drivers
+v0xefc390_0 .net "src2", 31 0, v0xefc7f0_0; 1 drivers
+v0xefc470_0 .net "src3", 31 0, v0xefc8a0_0; 1 drivers
+v0xefc510_0 .alias "z", 31 0, v0xefc980_0;
+v0xefc600_0 .var "z_reg", 31 0;
+E_0xec18a0/0 .event edge, L_0xefcc80, L_0xefcb60, v0xefc470_0, v0xefc390_0;
+E_0xec18a0/1 .event edge, v0xefc2f0_0, v0xefc240_0;
+E_0xec18a0 .event/or E_0xec18a0/0, E_0xec18a0/1;
+L_0xefcb60 .part v0xefca30_0, 0, 1;
+L_0xefcc80 .part v0xefca30_0, 1, 1;
+    .scope S_0xee6a80;
+T_0 ;
+    %wait E_0xec18a0;
+    %load/v 8, v0xefc1a0_0, 1; Select 1 out of 2 bits
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.0, 4;
+    %load/x1p 10, v0xefc1a0_0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %mov 10, 2, 1;
+T_0.1 ;
+    %mov 9, 10, 1; Move signal select into place
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_0.3, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_0.4, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_0.5, 6;
+    %jmp T_0.6;
+T_0.2 ;
+    %load/v 8, v0xefc240_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xefc600_0, 0, 8;
+    %jmp T_0.6;
+T_0.3 ;
+    %load/v 8, v0xefc2f0_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xefc600_0, 0, 8;
+    %jmp T_0.6;
+T_0.4 ;
+    %load/v 8, v0xefc390_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xefc600_0, 0, 8;
+    %jmp T_0.6;
+T_0.5 ;
+    %load/v 8, v0xefc470_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xefc600_0, 0, 8;
+    %jmp T_0.6;
+T_0.6 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0xee6990;
+T_1 ;
+    %vpi_call 2 11 "$monitor", "A = %x B = %x C = %x D = %x SEL = %b OUT=%x", v0xefc6a0_0, v0xefc740_0, v0xefc7f0_0, v0xefc8a0_0, v0xefca30_0, v0xefc980_0;
+    %delay 0, 0;
+    %movi 8, 4660, 32;
+    %set/v v0xefc6a0_0, 8, 32;
+    %movi 8, 17767, 32;
+    %set/v v0xefc740_0, 8, 32;
+    %movi 8, 624517, 32;
+    %set/v v0xefc7f0_0, 8, 32;
+    %movi 8, 4369, 32;
+    %set/v v0xefc8a0_0, 8, 32;
+    %set/v v0xefca30_0, 0, 2;
+    %delay 1, 0;
+    %movi 8, 4660, 32;
+    %set/v v0xefc6a0_0, 8, 32;
+    %movi 8, 17767, 32;
+    %set/v v0xefc740_0, 8, 32;
+    %movi 8, 624517, 32;
+    %set/v v0xefc7f0_0, 8, 32;
+    %movi 8, 4369, 32;
+    %set/v v0xefc8a0_0, 8, 32;
+    %movi 8, 1, 2;
+    %set/v v0xefca30_0, 8, 2;
+    %delay 1, 0;
+    %movi 8, 4660, 32;
+    %set/v v0xefc6a0_0, 8, 32;
+    %movi 8, 17767, 32;
+    %set/v v0xefc740_0, 8, 32;
+    %movi 8, 624517, 32;
+    %set/v v0xefc7f0_0, 8, 32;
+    %movi 8, 4369, 32;
+    %set/v v0xefc8a0_0, 8, 32;
+    %movi 8, 2, 2;
+    %set/v v0xefca30_0, 8, 2;
+    %delay 1, 0;
+    %movi 8, 4660, 32;
+    %set/v v0xefc6a0_0, 8, 32;
+    %movi 8, 17767, 32;
+    %set/v v0xefc740_0, 8, 32;
+    %movi 8, 624517, 32;
+    %set/v v0xefc7f0_0, 8, 32;
+    %movi 8, 4369, 32;
+    %set/v v0xefc8a0_0, 8, 32;
+    %set/v v0xefca30_0, 1, 2;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tests/mux4_to_1_test.v";
+    "4to1_mux_n.v";
