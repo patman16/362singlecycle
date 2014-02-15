@@ -54,7 +54,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//multu
 				22 : begin aluctl <= 4'b0101; fpnt <= 2'b11; end
 				//nop
-				21 : begin regwr <= 1'b0; aluctl <= 4'b0000; end 
+				21 : begin rdst <= 1'b0; regwr <= 1'b0; aluctl <= 4'b0000; end 
 				//or
 				37 : aluctl <= 4'b0001;
 				//seq
@@ -112,9 +112,9 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//bnez
 				5: begin rdst <= 1'b0; alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
 				//jalr
-				13: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				19: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
 				//jr
-				12: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				18: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
 				//lb
 				32: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
 				//lbu
@@ -128,7 +128,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//lw
 				35: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
 				//ori
-				14: begin rdst <= 1'b1; aluctl <= 4'b0001; exop <= 1'b0; end
+				13: begin rdst <= 1'b1; aluctl <= 4'b0001; exop <= 1'b0; end
 				//sb
 				40: begin rdst <= 1'b0; regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; end
 				//seqi
