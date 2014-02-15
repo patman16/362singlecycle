@@ -1,4 +1,4 @@
-module singlecyle (clock, reset);
+module singlecycle (clock, reset);
 
     input clock, reset;
     
@@ -8,7 +8,7 @@ module singlecyle (clock, reset);
     wire [3:0] aluctrl;
     wire [4:0] rd, rs1, rs2;
     
-    CTRL control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext);
+    control CTRL (instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext);
 
     //branch, zero, jump signals defined by control logic unit
     ifu IFU (branch, zero, jump, clock, reset, instruction);
@@ -28,6 +28,6 @@ module singlecyle (clock, reset);
 //Before Data 
     extender #(.inN(16), .outN(32)) EXT3(busB[15:0],1'b0, mux3_in1);
     extender #(.inN(8), .outN(32)) EXT4(busB [7:0],1'b0, mux3_in0); 
-    mux_4to1_n #(.n(32)) MUX3(mux3_in0, mux3_in1, 32'd0, busB, datamem_muxin);
+    mux_4to1_n #(.n(32)) MUX3(mux3_in0, mux3_in1, 32'd0, busB, dsize, datamem_muxin);
 
 endmodule
