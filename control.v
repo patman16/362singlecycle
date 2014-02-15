@@ -1,11 +1,11 @@
-module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2);
+module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext);
 	input [31:0] instruction;
-	output regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop;
-	output [1:0] fpoint;
+	output regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop, loadext;
+	output [1:0] fpoint, dsize;
 	output [3:0] aluctrl;
 	output [4:0] rd, rs1, rs2;
-	reg rdst, alusc, memreg, regwr, memwr, br, jmp, exop;
-	reg [1:0] fpnt;
+	reg rdst, alusc, memreg, regwr, memwr, br, jmp, exop, loadex;
+	reg [1:0] fpnt, dsiz;
 	reg [3:0] aluctl;
 	reg [4:0] regd, regs, regt;
 	
@@ -22,8 +22,14 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 	assign rd = regd;
 	assign rs1 = regs;
 	assign rs2 = regt;
+	assign loadext = loadex;
+	assign dsize = dsiz;
 	
 	always @*
+		begin
+		regd <= instruction[15:11];
+		regt <= instruction[20:16];
+		regs <= instruction[25:21];
 		if (instruction[31:26] == 6'd0 || instruction[31:26] == 6'd1)
 		begin
 			rdst <= 1'b1;
@@ -35,9 +41,8 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			jmp <= 1'b0;
 			exop <= 1'b0;
 			fpnt <= 2'b00;
-			regd <= instruction[15:11];
-			regs <= instruction[20:16];
-			regt <= instruction[25:21];
+			dsiz <= 2'b00;
+			loadex <= 1'b0;
 			case (instruction[10:0])
 				//add
 				32 : aluctl <= 4'b0011;
@@ -54,7 +59,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//multu
 				22 : begin aluctl <= 4'b0101; fpnt <= 2'b11; end
 				//nop
-				21 : begin rdst <= 1'b0; regwr <= 1'b0; aluctl <= 4'b0000; end 
+				21 : begin regwr <= 1'b0; aluctl <= 4'b0000; end 
 				//or
 				37 : aluctl <= 4'b0001;
 				//seq
@@ -89,76 +94,75 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 		begin
 			rdst <= 1'b0; alusc <= 1'b0; memreg <= 1'b0; regwr <= 1'b0;
 			memwr <= 1'b0; br <= 1'b0; jmp <= 1'b1; exop <= 1'b0; aluctl <= 4'b0000; fpnt <= 2'b00;
-			regd <= 5'b00000;
-			regs <= 5'b00000;
-			regt <= 5'b00000;
+			dsiz <= 2'b00;
+			loadex <= 1'b0;
 		end
 		else
 		begin
 			alusc <= 1'b1; memreg <= 1'b0; regwr <= 1'b1; memwr <= 1'b0; 
-			br <= 1'b0; jmp <= 1'b0; exop <= 1'b1; fpnt <= 2'b00;
-			regd <= instruction[20:16];
-			regs <= instruction[25:21];
-			regt <= 5'b00000;
+			br <= 1'b0; jmp <= 1'b0; exop <= 1'b1; fpnt <= 2'b00; rdst <= 1'b0;
+			dsiz <= 2'b00;
+			loadex <= 1'b0;
 			case (instruction[31:26])
 				//addi
-				8: begin rdst <= 1'b1; aluctl <= 4'b0011; end
+				8: aluctl <= 4'b0011;
 				//addui
-				9: begin rdst <= 1'b1; aluctl <= 4'b0011; exop <= 1'b0; end
+				9: begin aluctl <= 4'b0011; exop <= 1'b0; end
 				//andi
-				12: begin rdst <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				12: begin aluctl <= 4'b0000; exop <= 1'b0; end
 				//beqz
-				4: begin rdst <= 1'b0; alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
+				4: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
 				//bnez
-				5: begin rdst <= 1'b0; alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
+				5: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
 				//jalr
-				19: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				19: begin regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
 				//jr
-				18: begin rdst <= 1'b0; regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				18: begin regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
 				//lb
-				32: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
+				32: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; loadex <= 1'b1; end
 				//lbu
-				36: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
+				36: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; end
 				//lh
-				33: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
+				33: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; loadex <= 1'b1; end
 				//lhi
-				15: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				15: begin regs <= 5'b00000; rdst <= 1'b0; memreg <= 1'b0; aluctl <= 4'b0011; exop <= 1'b0; end
 				//lhu
-				37: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
+				37: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; end
 				//lw
-				35: begin rdst <= 1'b0; memreg <= 1'b1; aluctl <= 4'b0000; end
+				35: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b11; end
 				//ori
-				13: begin rdst <= 1'b1; aluctl <= 4'b0001; exop <= 1'b0; end
+				13: begin aluctl <= 4'b0001; exop <= 1'b0; end
 				//sb
-				40: begin rdst <= 1'b0; regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; end
+				40: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; end
 				//seqi
-				24: begin rdst <= 1'b1; aluctl <= 4'b0110; end
+				24: aluctl <= 4'b0110;
 				//sgei
-				29: begin rdst <= 1'b1; aluctl <= 4'b1000; end
+				29: aluctl <= 4'b1000;
 				//sgti
-				27: begin rdst <= 1'b1; aluctl <= 4'b1001; end
+				27: aluctl <= 4'b1001;
 				//sh
-				41: begin rdst <= 1'b0; regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; end
+				41: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; end
 				//slei
-				28: begin rdst <= 1'b1; aluctl <= 4'b1011; end
+				28: aluctl <= 4'b1011;
 				//slli
-				20: begin rdst <= 1'b1; aluctl <= 4'b1100; end
+				20: aluctl <= 4'b1100;
 				//slti
-				26: begin rdst <= 1'b1; aluctl <= 4'b1010; end
+				26: aluctl <= 4'b1010;
 				//snei
-				25: begin rdst <= 1'b1; aluctl <= 4'b0111; end
+				25: aluctl <= 4'b0111;
 				//srai
-				23: begin rdst <= 1'b1; aluctl <= 4'b1110; end
+				23: aluctl <= 4'b1110;
 				//srli
-				22: begin rdst <= 1'b1; aluctl <= 4'b1101; end
+				22: aluctl <= 4'b1101;
 				//subi
-				10: begin rdst <= 1'b1; aluctl <= 4'b0100; end
+				10: aluctl <= 4'b0100;
 				//subui
-				11: begin rdst <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
+				11: begin aluctl <= 4'b0100; exop <= 1'b0; end
 				//sw
-				43: begin rdst <= 1'b0; regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; end
+				43: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b11; end
 				//xori
-				14: begin rdst <= 1'b1; aluctl <= 4'b0010; exop <= 1'b0; end
+				14: begin aluctl <= 4'b0010; exop <= 1'b0; end
 			endcase
+		end
 		end
 endmodule

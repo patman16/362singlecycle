@@ -1,17 +1,17 @@
 module testbench;
 	reg [31:0] instruction;
-	wire regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop;
-	wire [1:0] fpoint;
+	wire regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop, loadext;
+	wire [1:0] fpoint, dsize;
 	wire [3:0] aluctrl;
 	wire [4:0] rd, rs1, rs2;
 	
-	control control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2);
+	control control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext);
 
 	initial 
 	begin
-		$monitor("rd = %b, rs1 = %b, rs2 = %b, regdst = %b alusrc = %b mem2reg = %b regwrite = %b memwrite = %b branch = %b jump = %b aluctrl = %b extop = %b fpoint = %b", rd, rs1, rs2, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint);
+		$monitor("rd = %b, rs1 = %b, rs2 = %b, regdst = %b alusrc = %b mem2reg = %b regwrite = %b memwrite = %b branch = %b jump = %b aluctrl = %b extop = %b fpoint = %b dsize = %b loadext = %b", rd, rs1, rs2, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, dsize, loadext);
 		//and
-		#0 instruction = 32'h00620824;
+		#0 instruction = 32'h00620820;
 		//movi2fp
 		#2 instruction = 32'h00620835;
 		//mult
