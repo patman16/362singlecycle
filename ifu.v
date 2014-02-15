@@ -29,14 +29,14 @@ module ifu(branch, zero, jump, clock, start, instruction);
     mux_2to1_n #(.n(30)) mux1_map (mux0, jumpmux, jump, mux1);
     PCReg #(.width(30)) PC (pcout, mux1, clock, start);
     imem #(.SIZE(1024)) IMEM (address, test);
-    extender #(.inN(16), .outN(30) ) EXT (test[15:0], 1'b1, extend);
+    extender #(.inN(16), .outN(30) ) EXT (test[31:16], 1'b1, extend);
     
     mux_2to1_n #(.n(1)) branch_ctrl (zero,~zero, instruction[26], zero_ctrl);
 
     assign address[31:2] = pcout;
     assign address[1:0] = 2'b00;
     assign jumpmux[29:26] = pcout[29:26];
-    assign jumpmux[25:0] = test[25:0];
+    assign jumpmux[25:0] = test[31:6];
     assign instruction = test;
 
 

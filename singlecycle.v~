@@ -1,4 +1,4 @@
-module singlecyle (clock, reset);
+module singlecycle (clock, reset);
 
     input clock, reset;
     
