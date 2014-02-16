@@ -27,10 +27,10 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 	
 	always @*
 		begin
-		regd <= instruction[23:18];
-		regt <= instruction[17:12];
-		regs <= instruction[11:6];
-		if (instruction[5:0] == 6'd0 || instruction[5:0] == 6'd1)
+		regd <= instruction[15:11];
+		regt <= instruction[20:16];
+		regs <= instruction[25:21];
+		if (instruction[31:26] == 6'd0 || instruction[31:26] == 6'd1)
 		begin
 			rdst <= 1'b1;
 			alusc <= 1'b0;
@@ -43,7 +43,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			fpnt <= 2'b00;
 			dsiz <= 2'b00;
 			loadex <= 1'b0;
-			case (instruction[31:21])
+			case (instruction[11:0])
 				//add
 				32 : aluctl <= 4'b0011;
 				//addu
@@ -90,7 +90,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			endcase
 		end
 		//j and jal
-		else if (instruction[5:0] == 6'd2 || instruction[5:0] == 6'd3)
+		else if (instruction[31:26] == 6'd2 || instruction[31:26] == 6'd3)
 		begin
 			rdst <= 1'b0; alusc <= 1'b0; memreg <= 1'b0; regwr <= 1'b0;
 			memwr <= 1'b0; br <= 1'b0; jmp <= 1'b1; exop <= 1'b0; aluctl <= 4'b0000; fpnt <= 2'b00;
@@ -103,7 +103,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			br <= 1'b0; jmp <= 1'b0; exop <= 1'b1; fpnt <= 2'b00; rdst <= 1'b0;
 			dsiz <= 2'b00;
 			loadex <= 1'b0;
-			case (instruction[5:0])
+			case (instruction[31:26])
 				//addi
 				8: aluctl <= 4'b0011;
 				//addui

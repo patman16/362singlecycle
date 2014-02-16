@@ -12,7 +12,7 @@ module singlecycle (clock, reset);
 
     //branch, zero, jump signals defined by control logic unit
     ifu IFU (branch, zero, jump, clock, reset, instruction);
-    extender EXT0 (instruction[31:16],extop, ext_out);
+    extender EXT0 (instruction[15:0],extop, ext_out);
     mux_2to1_n #(.n(32)) MUX0(busB, ext_out, alusrc, mux0_out);
     registers REGFILE(clock, regwrite, regdst, fpoint, rd, rs1, rs2, busW, busA, busB);
     alu ALU(busA, mux0_out, aluctrl, alu_out, zero);
