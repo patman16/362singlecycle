@@ -43,7 +43,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			fpnt <= 2'b00;
 			dsiz <= 2'b00;
 			loadex <= 1'b0;
-			case (instruction[11:0])
+			case (instruction[10:0])
 				//add
 				32 : aluctl <= 4'b0011;
 				//addu
@@ -119,21 +119,21 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//jr
 				18: begin regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
 				//lb
-				32: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; loadex <= 1'b1; end
+				32: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b00; loadex <= 1'b1; end
 				//lbu
-				36: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; end
+				36: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b00; end
 				//lh
-				33: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; loadex <= 1'b1; end
+				33: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b01; loadex <= 1'b1; end
 				//lhi
 				15: begin regs <= 5'b00000; rdst <= 1'b0; memreg <= 1'b0; aluctl <= 4'b0011; exop <= 1'b0; end
 				//lhu
-				37: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; end
+				37: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b01; end
 				//lw
-				35: begin memreg <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b11; end
+				35: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b11; end
 				//ori
 				13: begin aluctl <= 4'b0001; exop <= 1'b0; end
 				//sb
-				40: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b00; end
+				40: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b00; end
 				//seqi
 				24: aluctl <= 4'b0110;
 				//sgei
@@ -141,7 +141,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//sgti
 				27: aluctl <= 4'b1001;
 				//sh
-				41: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b01; end
+				41: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b01; end
 				//slei
 				28: aluctl <= 4'b1011;
 				//slli
@@ -159,7 +159,7 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//subui
 				11: begin aluctl <= 4'b0100; exop <= 1'b0; end
 				//sw
-				43: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0000; dsiz <= 2'b11; end
+				43: begin regwr <= 1'b0; memwr <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b11; end
 				//xori
 				14: begin aluctl <= 4'b0010; exop <= 1'b0; end
 			endcase

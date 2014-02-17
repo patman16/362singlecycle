@@ -1,3 +1,15 @@
+module register(clk, reset, d, ce, q);
+	input clk, reset, d, ce;
+	output q;
+	reg q;
+	
+	always @(posedge clk, reset)
+	if (reset == 1'b1)
+	  q <= 1'b0;
+	else if (clk)
+	  q <= d;
+endmodule 
+
 module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 	input clk, write, regdst;
 	input [1:0] fpoint;
@@ -5,13 +17,12 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 	input [31:0] busW;
 	output [31:0] busA, busB;
 	
-	integer rw, ra, rb;
-	reg [31:0] A, B;
 	reg [31:0] intregs [31:0];
 	reg [31:0] fpregs [31:0];
+	reg [4:0] rw;
 	
-	assign busA = A;
-	assign busB = B;
+	assign busA = fpoint == 1 ? fpregs[rs] : intregs[rs];
+	assign busB = fpoint == 1 ? fpregs[rt] : intregs[rt];
 
 	genvar i;
 	generate
@@ -29,23 +40,13 @@ module registers(clk, write, regdst, fpoint, rd, rs, rt, busW, busA, busB);
 	
 	always @(posedge clk)
 	begin
-		rw = (regdst == 1'b0) ? rt : rd;
-		ra = rs;
-		rb = rt;
-		if (write)
-			case (fpoint)
-			0 : intregs[rw] <= busW;
-			1 : fpregs[rw] <= intregs[ra];
-			2 : intregs[rw] <= fpregs[ra];
-			3 : fpregs[rw] <= busW;
-			endcase
-		if (fpoint == 2'b1)
-		begin
-		A <= fpregs[ra]; B <= fpregs[rb];
-		end
-		else
-		begin
-		A <= intregs[ra]; B <= intregs[rb];
-		end
-	end	
+	rw = (regdst == 1'b0) ? rt : rd;
+	if (write)
+		case (fpoint)
+		0 : intregs[rw] <= busW;
+		1 : fpregs[rw] <= intregs[rs];
+		2 : intregs[rw] <= fpregs[rs];
+		3 : fpregs[rw] <= busW;
+		endcase
+	end
 endmodule
