@@ -22,12 +22,12 @@ initial begin
 
   //Load IMEM from file
    if (!$value$plusargs("instrfile=%s", filename)) begin
-      filename = "instr.hex";
+      filename = "instr_fib.hex";
    end
    $readmemh(filename, top.IFU.IMEM.mem);
   // Load DMEM from file
   if (!$value$plusargs("datafile=%s", filename)) begin
-      filename = "data.hex";
+      filename = "data_fib.hex";
   end
   $readmemh(filename, top.DMEM.mem);
 

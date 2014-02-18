@@ -1,4 +1,5 @@
 IVERILOG = /vol/eecs362/iverilog/bin/iverilog
+DLXASM = /vol/eecs362/scripts/dlxasm
 ALUFILES = alu/*.v
 VERILOGFILES = *.v
 
@@ -12,3 +13,5 @@ control_test: ; ${IVERILOG} control.v tests/control_test.v -o tests/control_test
 mux4_test: ; ${IVERILOG} 4to1_mux_n.v tests/mux4_to_1_test.v -o tests/mux4_test
 singlecycle_test: ${ALUFILES} ${VERILOGFILES};
 	${IVERILOG} ${ALUFILES} ${VERILOGFILES} tests/singlecycle_test.v -o tests/singlecycle_test
+dlx_assemble: tests/unsignedsum.asm ${DLXASM} ;
+	${DLXASM} -C tests/instr_unsignedsum.hex -D tests/data_unsignedsum.hex tests/unsignedsum.asm
