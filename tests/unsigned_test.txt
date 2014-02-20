@@ -1,0 +1,141 @@
+Instruction = 00000026 PC =  00000000 Target = 00000001 Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =          0 ALUctrl = 0010 ALUout =          0 busW =          0 Rd =  0 Rs1 =  0 Rs2 =  0
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 00842026 PC =  00000001 Target = 00000002 Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =          0 ALUctrl = 0010 ALUout =          0 busW =          0 Rd =  4 Rs1 =  4 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 00a52826 PC =  00000002 Target = 00000003 Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =          0 ALUctrl = 0010 ALUout =          0 busW =          0 Rd =  5 Rs1 =  5 Rs2 =  5
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 00c63026 PC =  00000003 Target = 00000004 Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =          0 ALUctrl = 0010 ALUout =          0 busW =          0 Rd =  6 Rs1 =  6 Rs2 =  6
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 20060024 PC =  00000004 Target = 00000005 Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =         36 ALUctrl = 0011 ALUout =         36 busW =         36 Rd =  0 Rs1 =  0 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =          0 ALUa =         36 ALUb =       8192 ALUctrl = 0011 ALUout =       8228 busW = 3221225472 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb = 3221225472 ALUa =          0 ALUb = 3221225472 ALUctrl = 0011 ALUout = 3221225472 busW = 3221225472 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         36 ALUa =         36 ALUb =          4 ALUctrl = 0100 ALUout =         32 busW =         32 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         32 ALUb =          0 ALUctrl = 0100 ALUout =         32 busW =         32 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb = 3221225472 ALUa =         32 ALUb =       8192 ALUctrl = 0011 ALUout =       8224 busW =  536870912 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =  536870912 ALUa = 3221225472 ALUb =  536870912 ALUctrl = 0011 ALUout = 3758096384 busW = 3758096384 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         32 ALUa =         32 ALUb =          4 ALUctrl = 0100 ALUout =         28 busW =         28 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         28 ALUb =          0 ALUctrl = 0100 ALUout =         28 busW =         28 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =  536870912 ALUa =         28 ALUb =       8192 ALUctrl = 0011 ALUout =       8220 busW =  268435456 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =  268435456 ALUa = 3758096384 ALUb =  268435456 ALUctrl = 0011 ALUout = 4026531840 busW = 4026531840 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         28 ALUa =         28 ALUb =          4 ALUctrl = 0100 ALUout =         24 busW =         24 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         24 ALUb =          0 ALUctrl = 0100 ALUout =         24 busW =         24 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =  268435456 ALUa =         24 ALUb =       8192 ALUctrl = 0011 ALUout =       8216 busW =  251658240 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =  251658240 ALUa = 4026531840 ALUb =  251658240 ALUctrl = 0011 ALUout = 4278190080 busW = 4278190080 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         24 ALUa =         24 ALUb =          4 ALUctrl = 0100 ALUout =         20 busW =         20 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         20 ALUb =          0 ALUctrl = 0100 ALUout =         20 busW =         20 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =  251658240 ALUa =         20 ALUb =       8192 ALUctrl = 0011 ALUout =       8212 busW =   15728640 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =   15728640 ALUa = 4278190080 ALUb =   15728640 ALUctrl = 0011 ALUout = 4293918720 busW = 4293918720 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         20 ALUa =         20 ALUb =          4 ALUctrl = 0100 ALUout =         16 busW =         16 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         16 ALUb =          0 ALUctrl = 0100 ALUout =         16 busW =         16 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =   15728640 ALUa =         16 ALUb =       8192 ALUctrl = 0011 ALUout =       8208 busW =     983040 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =     983040 ALUa = 4293918720 ALUb =     983040 ALUctrl = 0011 ALUout = 4294901760 busW = 4294901760 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         16 ALUa =         16 ALUb =          4 ALUctrl = 0100 ALUout =         12 busW =         12 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =         12 ALUb =          0 ALUctrl = 0100 ALUout =         12 busW =         12 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =     983040 ALUa =         12 ALUb =       8192 ALUctrl = 0011 ALUout =       8204 busW =      61440 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =      61440 ALUa = 4294901760 ALUb =      61440 ALUctrl = 0011 ALUout = 4294963200 busW = 4294963200 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =         12 ALUa =         12 ALUb =          4 ALUctrl = 0100 ALUout =          8 busW =          8 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =          8 ALUb =          0 ALUctrl = 0100 ALUout =          8 busW =          8 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =      61440 ALUa =          8 ALUb =       8192 ALUctrl = 0011 ALUout =       8200 busW =       3840 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =       3840 ALUa = 4294963200 ALUb =       3840 ALUctrl = 0011 ALUout = 4294967040 busW = 4294967040 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =          8 ALUa =          8 ALUb =          4 ALUctrl = 0100 ALUout =          4 busW =          4 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000005 Branch = 1 Jump = 0
+	Regb =          0 ALUa =          4 ALUb =          0 ALUctrl = 0100 ALUout =          4 busW =          4 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 Jump = 0
+	Regb =       3840 ALUa =          4 ALUb =       8192 ALUctrl = 0011 ALUout =       8196 busW =        240 Rd =  4 Rs1 =  6 Rs2 =  4
+	regdst = 0 alusrc = 1 mem2reg = 1 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 Jump = 0
+	Regb =        240 ALUa = 4294967040 ALUb =        240 ALUctrl = 0011 ALUout = 4294967280 busW = 4294967280 Rd =  5 Rs1 =  5 Rs2 =  4
+	regdst = 1 alusrc = 0 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 0 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 Jump = 0
+	Regb =          4 ALUa =          4 ALUb =          4 ALUctrl = 0100 ALUout =          0 busW =          0 Rd =  0 Rs1 =  6 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000009 Branch = 1 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =          0 ALUctrl = 0100 ALUout =          0 busW =          0 Rd = 31 Rs1 =  6 Rs2 =  0
+	regdst = 0 alusrc = 0 mem2reg = 0 regwrite = 0 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0
+Instruction = ac062000 PC =  00000009 Target = 0000000a Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =       8192 ALUctrl = 0011 ALUout =       8192 busW =       8192 Rd =  4 Rs1 =  0 Rs2 =  6
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 0 memwrite = 1 extop = 1 loadext = 0 fpoint = 00 dsize = 11 jal = 0 jar = 0
+writing to mem at 00002000 val 00000000 size  3
+reading from mem at 00002000 val         15 size  3
+Mem[       8192] =          0
+Mem[       8196] =        240
+Mem[       8200] =       3840
+Mem[       8204] =      61440
+Mem[       8208] =     983040
+Mem[       8212] =   15728640
+Mem[       8216] =  251658240
+Mem[       8220] =  268435456
+Mem[       8224] =  536870912
+Mem[       8228] = 3221225472
+Instruction = 44000300 PC =  0000000a Target = 0000000b Branch = 0 Jump = 0
+	Regb =          0 ALUa =          0 ALUb =        768 ALUctrl = 0011 ALUout =        768 busW =        768 Rd =  0 Rs1 =  0 Rs2 =  0
+	regdst = 0 alusrc = 1 mem2reg = 0 regwrite = 1 memwrite = 0 extop = 1 loadext = 0 fpoint = 00 dsize = 00 jal = 0 jar = 0

@@ -1,10 +1,10 @@
-module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext);
+module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpoint, rd, rs1, rs2, dsize, loadext, jal, jar);
 	input [31:0] instruction;
-	output regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop, loadext;
+	output regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, extop, loadext, jal, jar;
 	output [1:0] fpoint, dsize;
 	output [3:0] aluctrl;
 	output [4:0] rd, rs1, rs2;
-	reg rdst, alusc, memreg, regwr, memwr, br, jmp, exop, loadex;
+	reg rdst, alusc, memreg, regwr, memwr, br, jmp, exop, loadex, jall, jarr;
 	reg [1:0] fpnt, dsiz;
 	reg [3:0] aluctl;
 	reg [4:0] regd, regs, regt;
@@ -24,6 +24,8 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 	assign rs2 = regt;
 	assign loadext = loadex;
 	assign dsize = dsiz;
+	assign jal = jall;
+	assign jar = jarr;
 	
 	always @*
 		begin
@@ -43,6 +45,8 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 			fpnt <= 2'b00;
 			dsiz <= 2'b00;
 			loadex <= 1'b0;
+			jall <= 1'b0;
+			jarr <= 1'b0;
 			case (instruction[10:0])
 				//add
 				32 : aluctl <= 4'b0011;
@@ -94,15 +98,14 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 		begin
 			rdst <= 1'b0; alusc <= 1'b0; memreg <= 1'b0; regwr <= 1'b0;
 			memwr <= 1'b0; br <= 1'b0; jmp <= 1'b1; exop <= 1'b0; aluctl <= 4'b0000; fpnt <= 2'b00;
-			dsiz <= 2'b00;
-			loadex <= 1'b0;
+			dsiz <= 2'b00; loadex <= 1'b0; jarr <= 1'b0;
+			if (instruction[31:26] == 6'd3) begin jall <= 1'b1; regwr <= 1'b1; rdst <= 1'b1; regd <= 5'b11111; end 
 		end
 		else
 		begin
 			alusc <= 1'b1; memreg <= 1'b0; regwr <= 1'b1; memwr <= 1'b0; 
 			br <= 1'b0; jmp <= 1'b0; exop <= 1'b1; fpnt <= 2'b00; rdst <= 1'b0;
-			dsiz <= 2'b00;
-			loadex <= 1'b0;
+			dsiz <= 2'b00; loadex <= 1'b0; jall <= 1'b0; jarr <= 1'b0;
 			case (instruction[31:26])
 				//addi
 				8: aluctl <= 4'b0011;
@@ -111,13 +114,13 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//andi
 				12: begin aluctl <= 4'b0000; exop <= 1'b0; end
 				//beqz
-				4: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
+				4: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; regt <= 5'b00000;  aluctl <= 4'b0100; end
 				//bnez
-				5: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; aluctl <= 4'b0100; exop <= 1'b0; end
+				5: begin alusc <= 1'b0; regwr <= 1'b0; br <= 1'b1; regt <= 5'b00000;  aluctl <= 4'b0100; end
 				//jalr
-				19: begin regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				19: begin regt <= 5'b11111; aluctl <= 4'b0000; exop <= 1'b0; jarr <= 1'b1; jall <= 1'b1; end
 				//jr
-				18: begin regwr <= 1'b0; jmp <= 1'b1; aluctl <= 4'b0000; exop <= 1'b0; end
+				18: begin regwr <= 1'b0; aluctl <= 4'b0000; exop <= 1'b0; jarr <= 1'b1; end
 				//lb
 				32: begin memreg <= 1'b1; aluctl <= 4'b0011; dsiz <= 2'b00; loadex <= 1'b1; end
 				//lbu

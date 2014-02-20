@@ -1,0 +1,133 @@
+writing to mem at 00002008 val 00000001 size  3
+reading from mem at 00002008 val          0 size  3
+writing to mem at 0000200c val 00000002 size  3
+reading from mem at 0000200c val          0 size  3
+writing to mem at 00002010 val 00000003 size  3
+reading from mem at 00002010 val          0 size  3
+writing to mem at 00002014 val 00000005 size  3
+reading from mem at 00002014 val          0 size  3
+writing to mem at 00002018 val 00000008 size  3
+reading from mem at 00002018 val          0 size  3
+writing to mem at 0000201c val 0000000d size  3
+reading from mem at 0000201c val          0 size  3
+writing to mem at 00002020 val 00000015 size  3
+reading from mem at 00002020 val          0 size  3
+writing to mem at 00002024 val 00000022 size  3
+reading from mem at 00002024 val          0 size  3
+writing to mem at 00002028 val 00000037 size  3
+reading from mem at 00002028 val          0 size  3
+writing to mem at 0000202c val 00000059 size  3
+reading from mem at 0000202c val          0 size  3
+writing to mem at 00002030 val 00000090 size  3
+reading from mem at 00002030 val          0 size  3
+writing to mem at 00002034 val 000000e9 size  3
+reading from mem at 00002034 val          0 size  3
+writing to mem at 00002038 val 00000179 size  3
+reading from mem at 00002038 val          0 size  3
+writing to mem at 0000203c val 00000262 size  3
+reading from mem at 0000203c val          0 size  3
+writing to mem at 00002040 val 000003db size  3
+reading from mem at 00002040 val          0 size  3
+writing to mem at 00002044 val 0000063d size  3
+reading from mem at 00002044 val          0 size  3
+writing to mem at 00002048 val 00000a18 size  3
+reading from mem at 00002048 val          0 size  3
+writing to mem at 0000204c val 00001055 size  3
+reading from mem at 0000204c val          0 size  3
+writing to mem at 00002050 val 00001a6d size  3
+reading from mem at 00002050 val          0 size  3
+writing to mem at 00002054 val 00002ac2 size  3
+reading from mem at 00002054 val          0 size  3
+writing to mem at 00002058 val 0000452f size  3
+reading from mem at 00002058 val          0 size  3
+writing to mem at 0000205c val 00006ff1 size  3
+reading from mem at 0000205c val          0 size  3
+writing to mem at 00002060 val 0000b520 size  3
+reading from mem at 00002060 val          0 size  3
+writing to mem at 00002064 val 00012511 size  3
+reading from mem at 00002064 val          0 size  3
+writing to mem at 00002068 val 0001da31 size  3
+reading from mem at 00002068 val          0 size  3
+writing to mem at 0000206c val 0002ff42 size  3
+reading from mem at 0000206c val          0 size  3
+writing to mem at 00002070 val 0004d973 size  3
+reading from mem at 00002070 val          0 size  3
+writing to mem at 00002074 val 0007d8b5 size  3
+reading from mem at 00002074 val          0 size  3
+writing to mem at 00002078 val 000cb228 size  3
+reading from mem at 00002078 val          0 size  3
+writing to mem at 0000207c val 00148add size  3
+reading from mem at 0000207c val          0 size  3
+writing to mem at 00002080 val 00213d05 size  3
+reading from mem at 00002080 val          0 size  3
+writing to mem at 00002084 val 0035c7e2 size  3
+reading from mem at 00002084 val          0 size  3
+writing to mem at 00002088 val 005704e7 size  3
+reading from mem at 00002088 val          0 size  3
+writing to mem at 0000208c val 008cccc9 size  3
+reading from mem at 0000208c val          0 size  3
+writing to mem at 00002090 val 00e3d1b0 size  3
+reading from mem at 00002090 val          0 size  3
+writing to mem at 00002094 val 01709e79 size  3
+reading from mem at 00002094 val          0 size  3
+writing to mem at 00002098 val 02547029 size  3
+reading from mem at 00002098 val          0 size  3
+writing to mem at 0000209c val 03c50ea2 size  3
+reading from mem at 0000209c val          0 size  3
+writing to mem at 000020a0 val 06197ecb size  3
+reading from mem at 000020a0 val          0 size  3
+writing to mem at 000020a4 val 09de8d6d size  3
+reading from mem at 000020a4 val          0 size  3
+writing to mem at 000020a8 val 0ff80c38 size  3
+reading from mem at 000020a8 val          0 size  3
+writing to mem at 000020ac val 19d699a5 size  3
+reading from mem at 000020ac val          0 size  3
+writing to mem at 000020b0 val 29cea5dd size  3
+reading from mem at 000020b0 val          0 size  3
+writing to mem at 000020b4 val 43a53f82 size  3
+reading from mem at 000020b4 val          0 size  3
+Mem[       8192] =          0
+Mem[       8196] =          1
+Mem[       8200] =          1
+Mem[       8204] =          2
+Mem[       8208] =          3
+Mem[       8212] =          5
+Mem[       8216] =          8
+Mem[       8220] =         13
+Mem[       8224] =         21
+Mem[       8228] =         34
+Mem[       8232] =         55
+Mem[       8236] =         89
+Mem[       8240] =        144
+Mem[       8244] =        233
+Mem[       8248] =        377
+Mem[       8252] =        610
+Mem[       8256] =        987
+Mem[       8260] =       1597
+Mem[       8264] =       2584
+Mem[       8268] =       4181
+Mem[       8272] =       6765
+Mem[       8276] =      10946
+Mem[       8280] =      17711
+Mem[       8284] =      28657
+Mem[       8288] =      46368
+Mem[       8292] =      75025
+Mem[       8296] =     121393
+Mem[       8300] =     196418
+Mem[       8304] =     317811
+Mem[       8308] =     514229
+Mem[       8312] =     832040
+Mem[       8316] =    1346269
+Mem[       8320] =    2178309
+Mem[       8324] =    3524578
+Mem[       8328] =    5702887
+Mem[       8332] =    9227465
+Mem[       8336] =   14930352
+Mem[       8340] =   24157817
+Mem[       8344] =   39088169
+Mem[       8348] =   63245986
+Mem[       8352] =  102334155
+Mem[       8356] =  165580141
+Mem[       8360] =  267914296
+Mem[       8364] =  433494437
+Mem[       8368] =  701408733

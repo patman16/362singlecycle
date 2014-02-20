@@ -11,6 +11,7 @@ module dmem(addr, rData, wData, writeEnable, dsize, clk);
     always @ (posedge clk) begin
         if (writeEnable) begin
             $display("writing to mem at %x val %x size %2d", addr, wData, dsize);
+	    $display("reading from mem at %x val %d size %2d", addr, rData, dsize);
             case (dsize)
               2'b11: begin
                  // word
@@ -26,7 +27,7 @@ module dmem(addr, rData, wData, writeEnable, dsize, clk);
               end
               2'b00: begin
                  // byte
-                 mem[addr] <= wData[24:31];
+                 mem[addr] <= wData[26:31];
               end
               default: $display("Invalid dsize: %x", dsize);
             endcase
