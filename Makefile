@@ -15,3 +15,5 @@ singlecycle_test: ${ALUFILES} ${VERILOGFILES};
 	${IVERILOG} ${ALUFILES} ${VERILOGFILES} tests/singlecycle_test.v -o tests/singlecycle_test
 dlx_assemble: tests/quicksort.asm ${DLXASM} ;
 	${DLXASM} -C tests/instr_quicksort.hex -D tests/data_quicksort.hex tests/quicksort.asm
+Exec_test: ${ALUFILES} ${VERILOGFILES}; 
+	${IVERILOG} ${ALUFILES} ${VERILOGFILES} tests/EXEC_test.v -o tests/EXEC_test
